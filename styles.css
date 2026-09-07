@@ -1,0 +1,79 @@
+:root {
+  --navy: #16324f;
+  --teal: #0f8b8d;
+  --gold: #c9a961;
+  --paper: #f7f9fa;
+  --ink: #1f2937;
+  --muted: #5b6b7a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  background: var(--navy);
+  color: var(--ink);
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.board-header {
+  max-width: 720px;
+  margin: 0 auto 1.5rem;
+  text-align: center;
+  color: var(--paper);
+}
+
+.board-header h1 {
+  margin: 0 0 0.25rem;
+  color: var(--gold);
+  letter-spacing: 0.03em;
+}
+
+.stats { color: #d3edee; margin: 0; }
+
+.board {
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.quest-card {
+  background: var(--paper);
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-left: 6px solid var(--teal);
+}
+
+.quest-card h3 { margin: 0 0 0.25rem; color: var(--navy); }
+.quest-card p { margin: 0; color: var(--muted); font-size: 0.9rem; }
+
+.quest-card button {
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: white;
+  background: var(--teal);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+}
+
+.quest-card button:hover { background: #0b6a6c; }
+
+.quest-card.accepted {
+  opacity: 0.55;
+  border-left-color: var(--gold);
+}
+
+.quest-card.accepted button {
+  background: var(--muted);
+  cursor: default;
+}
