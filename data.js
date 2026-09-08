@@ -2,7 +2,7 @@
 // The quests array is your single source of truth.
 
 const quests = [
-  { id: 1, title: "Rats in the Cellar", difficulty: "Easy", gold: 50, accepted: false },
+  { id: 1, title: "Rats in the Cellar", difficulty: "Easy", gold: 50, accepted: true },
   { id: 2, title: "Escort the Merchant", difficulty: "Medium", gold: 150, accepted: false },
   { id: 3, title: "The Bridge Troll Problem", difficulty: "Hard", gold: 250, accepted: false },
   { id: 4, title: "Missing Shipment of Ale", difficulty: "Easy", gold: 75, accepted: false },

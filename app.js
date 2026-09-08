@@ -10,26 +10,51 @@ const goldTotalEl = document.querySelector("#gold-total");
 // BRONZE: render the board from data
 // ---------------------------------------------------------------
 function render() {
-  // TODO 1: clear the board (board.innerHTML = "" is fine)
+  herald(quests);
+  board.innerHTML = "";
 
-  // TODO 2: loop over quests and build a card for each one.
-  //   Each card is an <article class="quest-card"> containing:
-  //     - an <h3> with the title
-  //     - a <p> with difficulty and gold, like "Medium | 150g"
-  //     - a <button> that says "Accept" with data-id set to the quest id
-  //   If quest.accepted is true, also add the "accepted" class to the card.
-
-  // TODO 3 (GOLD): update the two counters from the quests array.
-  //   openCountEl.textContent = how many quests are not accepted
-  //   goldTotalEl.textContent = total gold across open quests only
-  //   Compute these here, every render. Do not update them anywhere else.
+  quests.forEach((quest) => {
+    const card = document.createElement("article")
+    card.className = "quest-card" + (quest.accepted ? " accepted" : "");
+    card.innerHTML = 
+    `
+    <div>
+      <h3>${quest.title}</h3>
+      <p>${quest.difficulty} | ${quest.gold}</p>
+    </div>
+    <button data-id = "${quest.id}" ${quest.accepted ? "disabled" : ""}>
+    ${quest.accepted ? "Taken" : "Accept"}
+    </button>
+    `;
+    board.appendChild(card);
+  })
 }
 
-// ---------------------------------------------------------------
-// SILVER: one delegated listener for every Accept button
-// ---------------------------------------------------------------
+function herald(quests)
+{
+  // const id = 2;
+  // console.log(quests.filter(obj => obj.id === id));
+  const difficulty = "Hard";
+  console.log(quests.filter(obj => obj.difficulty === difficulty));
+}
+
+const amountOpen = quests.filter(quest => quest.accepted === false);
+openCountEl.textContent = amountOpen.length;
+goldTotalEl.textContent = amountOpen.reduce((sum, current) => sum + current.gold, 0);
+
 board.addEventListener("click", (e) => {
   const btn = e.target.closest("[data-id]");
+  const btnID = btn.getAttribute("data-id");
+  console.log(btn);
+  console.log(btnID);
+
+  const btnDIS = quests.filter(quest => quest.id == btnID);
+  console.log(btnDIS);
+
+  btnDIS.accepted = true;
+
+  render();
+
   if (!btn) return;
 
   // TODO 4: find the quest whose id matches btn.dataset.id
